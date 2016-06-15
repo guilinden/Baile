@@ -1,0 +1,112 @@
+<?php
+	session_start();
+	if(isset($_SESSION['user'])){
+		$id = session_id();
+	}
+	else {
+	echo"<script language='javascript' type='text/javascript'>alert('Voce de estar logado');window.location.href='index.php';</script>";
+	}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Editar Jogo</title>
+	<link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<nav class="navbar navbar-default">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-2">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Baile de Munique</a>
+          </div>
+
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="navbar-collapse-2">
+            <ul class="nav navbar-nav navbar-right">
+
+
+              <li><a href="home.php">Home</a></li>
+              <li>
+                <a class="btn btn-default btn-outline btn-circle"  data-toggle="collapse" href="logout.php" aria-expanded="false" aria-controls="nav-collapse2">Logout</a>
+              </li>
+            </ul>
+            <div class="collapse nav navbar-nav nav-collapse" id="nav-collapse2">
+              <form class="navbar-form navbar-right form-inline" role="form">
+                <div class="form-group">
+                  <label class="sr-only" for="Email">Email</label>
+                  <input type="email" class="form-control" id="Email" placeholder="Email" autofocus required />
+                </div>
+                <div class="form-group">
+                  <label class="sr-only" for="Password">Password</label>
+                  <input type="password" class="form-control" id="Password" placeholder="Password" required />
+                </div>
+                <button type="submit" class="btn btn-success">Logout</button>
+              </form>
+            </div>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container -->
+      </nav><!-- /.navbar -->
+
+	<h2 align="center">Jogador selecionado</h2>
+	<table class="table">
+		<thead>
+		<tr>
+			<th>Nome</th>
+			<th>Posicao</th>
+			<th>Idade</th>
+		</tr>
+	</thead>
+	<tbody>
+<?php
+	$id = $_GET['id'];
+	mysql_connect("localhost", "root","") or die(mysql_error()); //Connect to server
+	mysql_select_db("baile") or die("Cannot connect to database"); //connect to database
+	$query = mysql_query("Select * from elenco Where id='$id'"); // SQL Query
+	while($row = mysql_fetch_array($query)){
+		Print "<tr>";
+			Print '<td>'. $row['nome'] . "</td>";
+			Print '<td>'. $row['posicao'] . "</td>";
+			Print '<td>'. $row['idade'] . "</td>";
+		Print "</tr>";
+	}
+?>
+</tbody>
+	</table>
+</br>
+<div align="center">
+	<h2>Editar Jogador</h2>
+	<form method="post" >
+		Nome: <input type="text" name="nome"/></br>
+		Posicao: <input type="text" name="posicao"/></br>
+		Idade: <input type="text" name="idade"/></br></br>
+		<input type="submit" name="editar" value="Editar">
+	</form>
+</div>
+</body>
+</html>
+
+<?php
+$connection = mysql_connect("localhost","root","");
+mysql_select_db("baile",$connection);
+
+
+if(isset($_POST['editar'])){
+	$nome = $_POST['nome'];
+	$posicao = $_POST['posicao'];
+	$idade = $_POST['idade'];
+
+	$sql = ("UPDATE elenco SET nome='$nome', posicao='$posicao', idade='$idade' WHERE id='$id'");
+	mysql_query($sql);
+	header("Location:editar_elenco.php");
+
+}
+
+ ?>
