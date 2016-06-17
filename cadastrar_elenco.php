@@ -57,7 +57,24 @@ else {
       <h4>Nome</h4><input type="text" class="form-control" name="nome" placeholder="Time" /></br>
       <h4>Posicao</h4><input type="text" class="form-control" name="posicao" placeholder="Local" /></br>
 			<h4>Idade</h4><input type="text" class="form-control" name="idade" placeholder="Local" /></br>
+			<h2 class="form-signin-heading">Informe os atributos</h2>
+			<?php
+			function dropdown($titulo){
+				Print '<div class="form-group">';
+	      Print '<label for="sel1">' . $titulo .' :</label>';
+	      Print '<select class="form-control" id="sel1" name="' . strtolower($titulo) .'">';
+				for ($i=1; $i<100 ; $i++) {
+						Print '<option>' . $i . '</option>';
+				}
+				Print '</select>';
+				Print '</div>';
+			}
 
+			 dropdown("Folego");
+			 dropdown("Velocidade");
+			 dropdown("Forca");
+			 dropdown("Drible");
+			 ?>
 
       <button class="btn btn-lg btn-primary btn-block" type="submit">Enviar</button>
     </form>

@@ -66,7 +66,7 @@
 					$cont = $cont + 1;
 					Print "<tr>";
 						Print '<th class="col-md-1">'. $cont . "</th>";
-						Print '<th class="col-md-2">'. $row['nome'] . "</th>";
+						Print '<th class="col-md-2"><a href="perfil_elenco.php?id=' . $row['id'] .'">'. $row['nome'] .'</a></th>';
 						Print '<td class="col-md-2">'. $row['posicao'] . "</td>";
 						Print '<td class="col-md-2">'. $row['idade'] . "</td>";
 					Print "</tr>";
