@@ -13,6 +13,7 @@
 	<title>Editar Jogo</title>
 	<link href="css/bootstrap.css" rel="stylesheet">
 	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 	<nav class="navbar navbar-default">
@@ -62,6 +63,10 @@
 			<th>Nome</th>
 			<th>Posicao</th>
 			<th>Idade</th>
+			<th>Folego</th>
+			<th>Velocidade</th>
+			<th>Forca</th>
+			<th>Drible</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -72,23 +77,57 @@
 	$query = mysql_query("Select * from elenco Where id='$id'"); // SQL Query
 	while($row = mysql_fetch_array($query)){
 		Print "<tr>";
-			Print '<td>'. $row['nome'] . "</td>";
+			Print '<td>'. $row['nome'] ."</td>";
 			Print '<td>'. $row['posicao'] . "</td>";
 			Print '<td>'. $row['idade'] . "</td>";
+			Print '<td>'. $row['folego'] . "</td>";
+			Print '<td>'. $row['velocidade'] . "</td>";
+			Print '<td>'. $row['forca'] . "</td>";
+			Print '<td>'. $row['drible'] . "</td>";
 		Print "</tr>";
 	}
 ?>
 </tbody>
 	</table>
 </br>
-<div align="center">
-	<h2>Editar Jogador</h2>
-	<form method="post" >
-		Nome: <input type="text" name="nome"/></br>
-		Posicao: <input type="text" name="posicao"/></br>
-		Idade: <input type="text" name="idade"/></br></br>
-		<input type="submit" name="editar" value="Editar">
-	</form>
+<div class="wrapper">
+<form class="form-signin" method="post">
+	<h2 class="form-signin-heading">Altere os dados</h2>
+	<?php
+	$id = $_GET['id'];
+	mysql_connect("localhost", "root","") or die(mysql_error()); //Connect to server
+	mysql_select_db("baile") or die("Cannot connect to database"); //connect to database
+	$query = mysql_query("Select * from elenco Where id='$id'"); // SQL Query
+	while($row = mysql_fetch_array($query)){
+		$nome = $row['nome'];
+		$posicao = $row['posicao'];
+		$idade = $row['idade'];
+	}
+	 ?>
+	<h4>Nome</h4><input type="text" class="form-control" name="nome" value="<?php echo $nome ?>" /></br>
+	<h4>Posicao</h4><input type="text" class="form-control" name="posicao" value="<?php echo $posicao ?>" /></br>
+	<h4>Idade</h4><input type="text" class="form-control" name="idade" value="<?php echo $idade ?>" /></br>
+	<h2 class="form-signin-heading">Informe os atributos</h2>
+	<?php
+	function dropdown($titulo){
+		Print '<div class="form-group">';
+		Print '<label for="sel1">' . $titulo .' :</label>';
+		Print '<select class="form-control" id="sel1" name="' . strtolower($titulo) .'">';
+		for ($i=1; $i<100 ; $i++) {
+				Print '<option>' . $i . '</option>';
+		}
+		Print '</select>';
+		Print '</div>';
+	}
+
+	 dropdown("Folego");
+	 dropdown("Velocidade");
+	 dropdown("Forca");
+	 dropdown("Drible");
+	 ?>
+
+	<button class="btn btn-lg btn-primary btn-block" type="submit" name="editar">Enviar</button>
+</form>
 </div>
 </body>
 </html>
@@ -102,10 +141,14 @@ if(isset($_POST['editar'])){
 	$nome = $_POST['nome'];
 	$posicao = $_POST['posicao'];
 	$idade = $_POST['idade'];
+	$folego = $_POST['folego'];
+	$velocidade = $_POST['velocidade'];
+	$forca = $_POST['forca'];
+	$drible = $_POST['drible'];
 
-	$sql = ("UPDATE elenco SET nome='$nome', posicao='$posicao', idade='$idade' WHERE id='$id'");
+	$sql = ("UPDATE elenco SET nome='$nome', posicao='$posicao', idade='$idade', folego='$folego', velocidade='$velocidade', forca='$forca', drible='$drible' WHERE id='$id'");
 	mysql_query($sql);
-	header("Location:editar_elenco.php");
+	header("Location:index.php");
 
 }
 
