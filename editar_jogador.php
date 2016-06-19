@@ -1,7 +1,26 @@
 <?php
+$connection = mysql_connect("localhost","root","");
+mysql_select_db("baile",$connection);
+
+
+if(isset($_POST['editar'])){
+	$nome = $_POST['nome'];
+	$posicao = $_POST['posicao'];
+	$idade = $_POST['idade'];
+	$folego = $_POST['folego'];
+	$velocidade = $_POST['velocidade'];
+	$forca = $_POST['forca'];
+	$drible = $_POST['drible'];
+	$id = $_GET['id'];
+
+	$sql = ("UPDATE elenco SET nome='$nome', posicao='$posicao', idade='$idade', folego='$folego', velocidade='$velocidade', forca='$forca', drible='$drible' WHERE id='$id'");
+	mysql_query($sql);
+	//header("Location:elenco.php");
+
+}
 	session_start();
 	if(isset($_SESSION['user'])){
-		$id = session_id();
+		//$id = session_id();
 	}
 	else {
 	echo"<script language='javascript' type='text/javascript'>alert('Voce de estar logado');window.location.href='index.php';</script>";
@@ -110,12 +129,29 @@
 	<h2 class="form-signin-heading">Informe os atributos</h2>
 	<?php
 	function dropdown($titulo){
+		$id = $_GET['id'];
+		mysql_connect("localhost", "root","") or die(mysql_error()); //Connect to server
+		mysql_select_db("baile") or die("Cannot connect to database"); //connect to database
+		$query = mysql_query("Select * from elenco Where id='$id'"); // SQL Query
+		while($row = mysql_fetch_array($query)){
+			$titulo = strtolower($titulo);
+			$valor = $row[$titulo];
+		}
 		Print '<div class="form-group">';
 		Print '<label for="sel1">' . $titulo .' :</label>';
 		Print '<select class="form-control" id="sel1" name="' . strtolower($titulo) .'">';
+
 		for ($i=1; $i<100 ; $i++) {
+				if($i != $valor){
 				Print '<option>' . $i . '</option>';
-		}
+				}
+				else{
+				Print '<option selected>' . $i . '</option>';
+
+				}
+
+			}
+
 		Print '</select>';
 		Print '</div>';
 	}
@@ -131,25 +167,3 @@
 </div>
 </body>
 </html>
-
-<?php
-$connection = mysql_connect("localhost","root","");
-mysql_select_db("baile",$connection);
-
-
-if(isset($_POST['editar'])){
-	$nome = $_POST['nome'];
-	$posicao = $_POST['posicao'];
-	$idade = $_POST['idade'];
-	$folego = $_POST['folego'];
-	$velocidade = $_POST['velocidade'];
-	$forca = $_POST['forca'];
-	$drible = $_POST['drible'];
-
-	$sql = ("UPDATE elenco SET nome='$nome', posicao='$posicao', idade='$idade', folego='$folego', velocidade='$velocidade', forca='$forca', drible='$drible' WHERE id='$id'");
-	mysql_query($sql);
-	header("Location:index.php");
-
-}
-
- ?>
