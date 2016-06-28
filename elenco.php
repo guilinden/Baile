@@ -61,7 +61,7 @@ include_once 'database/database.php';
 		<tbody>
 		<?php
 				$cont = 0;
-				mysql_connect(ROOT,USER,PASS) or die(mysql_error()); //Connect to server
+				mysql_connect(HOST,USER,PASS) or die(mysql_error()); //Connect to server
 				mysql_select_db("baile") or die("Cannot connect to database"); //connect to database
 				$query = mysql_query("SELECT * FROM elenco"); // SQL Query
 				while($row = mysql_fetch_array($query))

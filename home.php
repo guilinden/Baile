@@ -40,8 +40,5 @@ else {
         </div>
     </div>
 </div>
-<div id="foto">
-<img src="logo.png" alt="Smiley face">
-</div>
 </body>
 </html>
