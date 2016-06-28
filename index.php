@@ -84,7 +84,7 @@
                       Print '<th>'. $cont . "</th>";
                       Print '<th>'. $row['adversario'] . "</th>";
                       Print '<td>'. $row['local'] . "</td>";
-                      Print '<td>'. $row['horario'] . "</td>";
+                      Print '<td>'. date('d/m/Y H:i:s', strtotime($row['horario'])) . "</td>";
 
 
 
