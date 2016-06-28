@@ -115,7 +115,7 @@ if(isset($_POST['editar'])){
 	<h2 class="form-signin-heading">Altere os dados</h2>
 	<?php
 	$id = $_GET['id'];
-	mysql_connect("localhost", "root","") or die(mysql_error()); //Connect to server
+	mysql_connect(HOST,USER,PASS) or die(mysql_error()); //Connect to server
 	mysql_select_db("baile") or die("Cannot connect to database"); //connect to database
 	$query = mysql_query("Select * from elenco Where id='$id'"); // SQL Query
 	while($row = mysql_fetch_array($query)){
@@ -131,7 +131,7 @@ if(isset($_POST['editar'])){
 	<?php
 	function dropdown($titulo){
 		$id = $_GET['id'];
-		mysql_connect("localhost", "root","") or die(mysql_error()); //Connect to server
+		mysql_connect(HOST,USER,PASS) or die(mysql_error()); //Connect to server
 		mysql_select_db("baile") or die("Cannot connect to database"); //connect to database
 		$query = mysql_query("Select * from elenco Where id='$id'"); // SQL Query
 		while($row = mysql_fetch_array($query)){
