@@ -40,9 +40,8 @@
               <li><a href="index.php">Tabela de jogos</a></li>
               <li><a href="elenco.php">Elenco</a></li>
               <li><a href="marcar_jogo.php">Marcar um jogo</a></li>
-              <li>
-                <a class="btn btn-default btn-outline btn-circle"  data-toggle="collapse" href="login.php" aria-expanded="false" aria-controls="nav-collapse2">Sign in</a>
-              </li>
+              <li><a href="login.php">Login</a></li>
+
             </ul>
             <div class="collapse nav navbar-nav nav-collapse" id="nav-collapse2">
               <form class="navbar-form navbar-right form-inline" role="form">
