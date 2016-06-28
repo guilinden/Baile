@@ -1,2 +1,2 @@
 # Baile
-Amauter footbal system managment
+Management system developed for an amauter soccer team
