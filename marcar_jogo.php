@@ -63,6 +63,7 @@
       <h4>Nome do time</h4><input type="text" class="form-control" name="adversario" placeholder="Time" /></br>
       <h4>Local da partida</h4><input type="text" class="form-control" name="local" placeholder="Local" />
 			<h4>Data</h4><input type="datetime-local" class="form-control" name="horario" placeholder="Local" /></br>
+      <h4>Numero para contato</h4><input type="text" class="form-control" name="numero" placeholder="(51) 9999-9999" /></br>
 			<h4>Informacoes adicionais</h4>
 			<div class="form-group">
   			<textarea class="form-control" rows="5" id="comment" name="info"></textarea>

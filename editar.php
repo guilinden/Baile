@@ -1,4 +1,5 @@
 <?php
+include_once 'database/database.php';
 session_start();
 
 if(isset($_SESSION['user'])){
@@ -71,7 +72,7 @@ else {
 		<?php
 				$cont = 0;
 				$id = $_GET['id'];
-				mysql_connect("localhost", "root","") or die(mysql_error()); //Connect to server
+				mysql_connect(HOST,USER,PASS) or die(mysql_error()); //Connect to server
 				mysql_select_db("baile") or die("Cannot connect to database"); //connect to database
 				$query = mysql_query("Select * from jogos Where id='$id'"); // SQL Query
 				while($row = mysql_fetch_array($query))
@@ -107,7 +108,7 @@ else {
 </html>
 
 <?php
-$connection = mysql_connect("localhost","root","");
+$connection = mysql_connect(HOST,USER,PASS);
 mysql_select_db("baile",$connection);
 
 

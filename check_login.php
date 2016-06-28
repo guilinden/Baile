@@ -1,5 +1,6 @@
-<?php  
-$connection = mysql_connect("localhost","root","");
+<?php
+include_once 'database/database.php';
+$connection = mysql_connect(HOST,USER,PASS);
 mysql_select_db("baile",$connection);
 
 $usuario = $_POST['usuario'];
@@ -14,5 +15,5 @@ $sql = mysql_query("SELECT * FROM usuarios WHERE usuario = '$usuario' AND senha 
 		$_SESSION['user'] = $usuario;
 		header("Location:home.php");
 		}
-	
+
 ?>

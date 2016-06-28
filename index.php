@@ -61,6 +61,7 @@
       </nav><!-- /.navbar -->
     </br>
       <h3>Acompanhe os jogos da nossa equipe</h3></br>
+      <div id='tab_jogos'>
       <table class="table">
         <thead>
           <tr>
@@ -93,6 +94,7 @@
           ?>
         </tbody>
       </table>
+    </div>
 
 
 

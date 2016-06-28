@@ -1,4 +1,5 @@
 <?php
+include_once 'database/database.php';
 session_start();
 
 if(isset($_SESSION['user'])){
@@ -18,7 +19,7 @@ else {
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 </head>
 <body>
-	
+
 
 	<h2 align="center">Jogo selecionado</h2>
 	<table class="table">
@@ -29,13 +30,14 @@ else {
 			<th>Local</th>
 			<th>Horario</th>
       <th>Info</th>
+			<th>Contato</th>
 		</tr>
 	</thead>
 	<tbody>
 		<?php
 				$cont = 0;
 				$id = $_GET['id'];
-				mysql_connect("localhost", "root","") or die(mysql_error()); //Connect to server
+				mysql_connect(HOST,USER,PASS) or die(mysql_error()); //Connect to server
 				mysql_select_db("baile") or die("Cannot connect to database"); //connect to database
 				$query = mysql_query("Select * from marcar_jogo Where id='$id'"); // SQL Query
 				while($row = mysql_fetch_array($query))
@@ -47,6 +49,7 @@ else {
 						Print '<td>'. $row['local'] . "</td>";
 						Print '<td>'. $row['horario'] . "</td>";
             Print '<td>'. $row['info'] . "</td>";
+						Print '<td>'. $row['numero'] . "</td>";
 					Print "</tr>";
 				}
 			?>
@@ -63,7 +66,7 @@ else {
 </html>
 
 <?php
-$connection = mysql_connect("localhost","root","");
+$connection = mysql_connect(HOST,USER,PASS);
 mysql_select_db("baile",$connection);
 
 

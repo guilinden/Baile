@@ -1,4 +1,5 @@
 <?php
+include_once 'database/database.php';
 session_start();
 
 if(isset($_SESSION['user'])){
@@ -10,7 +11,7 @@ else {
 
 if($_SERVER['REQUEST_METHOD'] == "GET")
 	{
-		mysql_connect("localhost", "root","") or die(mysql_error());
+		mysql_connect(HOST,USER,PASS) or die(mysql_error());
 		mysql_select_db("baile") or die("Erro ao conectar no bando");
 		$id = $_GET['id'];
 		mysql_query("DELETE FROM elenco WHERE id='$id'");

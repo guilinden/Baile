@@ -1,3 +1,6 @@
+<?php
+include_once 'database/database.php';
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,18 +57,21 @@
   <ul class="list-group">
 			<?php
 
-			$connection = mysql_connect("localhost","root","");
+			$connection = mysql_connect(HOST,USER,PASS);
 			mysql_select_db("baile",$connection);
 			$id = $_GET['id'];
 			$sql = mysql_query("SELECT * FROM elenco WHERE id='$id'");
 			while($row = mysql_fetch_array($sql)){
-				Print '<li class="list-group-item active">';
+				Print '<img class="img-responsive" id="foto_perfil" src="imagens/' . $row['name'] . '" alt="">';
+				Print '<hr>';
+				Print '<div id="testando">';
 				Print $row['nome'];
-				Print '</li>';
+				Print '</div>';
+
 
 			}
 			function info($valor){
-				$connection = mysql_connect("localhost","root","");
+				$connection = mysql_connect(HOST,USER,PASS);
 				mysql_select_db("baile",$connection);
 				$id = $_GET['id'];
 				$sql = mysql_query("SELECT * FROM elenco WHERE id='$id'");
@@ -82,7 +88,7 @@
 			}
 
 			function habilidades($valor){
-			$connection = mysql_connect("localhost","root","");
+			$connection = mysql_connect(HOST,USER,PASS);
 			mysql_select_db("baile",$connection);
 			$id = $_GET['id'];
 			$sql = mysql_query("SELECT * FROM elenco WHERE id='$id'");

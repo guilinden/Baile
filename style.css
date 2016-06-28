@@ -83,3 +83,25 @@ width:110px;
 	color:#ffffff;
 	color:rgba(0, 0, 0, 0.4);
 }
+#foto_perfil{
+	width: 200px;
+	height: 200px;
+	border-radius: 150px;
+	-webkit-border-radius: 150px;
+	-moz-border-radius: 150px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+	-webkit-box-shadow: 0 0 8px rgba(0, 0, 0, .8);
+	-moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8)
+	}
+#testando{
+    position: absolute;
+    top: 150px;
+    left: 250px;;
+    font-size: 50px;
+    color: #428bca;
+
+}
+h2{
+  font-size: 30px;
+  color: #428bca;
+}

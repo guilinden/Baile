@@ -1,4 +1,5 @@
 <?php
+include_once 'database/database.php';
 session_start();
 if(isset($_SESSION['user'])){
 	$id = session_id();
@@ -12,7 +13,7 @@ else {
 <html >
   <head>
     <meta charset="UTF-8">
-    <title>Bootstrap Snippet: Login Form</title>
+    <title>Cadastrar elenco</title>
     <link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css'>
     <link rel="stylesheet" href="css/style.css">
 	</head>
@@ -52,11 +53,14 @@ else {
           </div><!-- /.container -->
         </nav><!-- /.navbar -->
       <div class="wrapper">
-    <form class="form-signin" action="registrar_jogador.php" method="post">
+    <form class="form-signin" method="post" enctype="multipart/form-data">
       <h2 class="form-signin-heading">Informe os dados</h2>
       <h4>Nome</h4><input type="text" class="form-control" name="nome" placeholder="Time" /></br>
       <h4>Posicao</h4><input type="text" class="form-control" name="posicao" placeholder="Local" /></br>
 			<h4>Idade</h4><input type="text" class="form-control" name="idade" placeholder="Local" /></br>
+			<h2 class="form-signin-heading">Selecione uma imagem</h2>
+			<h4>Foto</h4>
+			<input type="file" name="arquivo">
 			<h2 class="form-signin-heading">Informe os atributos</h2>
 			<?php
 			function dropdown($titulo){
@@ -76,8 +80,30 @@ else {
 			 dropdown("Drible");
 			 ?>
 
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Enviar</button>
+      <button class="btn btn-lg btn-primary btn-block" type="submit" name="enviar">Enviar</button>
     </form>
   </div>
   </body>
 </html>
+<?php
+if(isset($_POST['enviar'])){
+
+$nome = $_POST['nome'];
+$idade = $_POST['idade'];
+$posicao = $_POST['posicao'];
+$folego = $_POST['folego'];
+$velocidade = $_POST['velocidade'];
+$drible = $_POST['drible'];
+$forca = $_POST['forca'];
+$extensao = strtolower(substr($_FILES['arquivo']['name'], -4));
+	$novo_nome = md5(time()) . $extensao;
+	$diretorio = "imagens/";
+	move_uploaded_file($_FILES['arquivo']['tmp_name'], $diretorio . $novo_nome);
+$connection = mysql_connect(HOST,USER,PASS);
+mysql_select_db("baile",$connection);
+
+$sql = "INSERT INTO elenco (nome,idade,posicao,folego,velocidade,drible,forca,name) VALUES ('$nome','$idade','$posicao','$folego','$velocidade','$drible','$forca','$novo_nome')";
+mysql_query($sql);
+//header("Location:home.php");
+}
+ ?>
