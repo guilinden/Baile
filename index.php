@@ -1,3 +1,6 @@
+<?php
+include_once 'database/database.php'
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -75,7 +78,7 @@
         <tbody>
           <?php
               $cont = 0;
-              mysql_connect("localhost", "root","") or die(mysql_error()); //Connect to server
+              mysql_connect(HOST,USER,PASS) or die(mysql_error()); //Connect to server
               mysql_select_db("baile") or die("Cannot connect to database"); //connect to database
                   $query = mysql_query("SELECT * FROM jogos"); // SQL Query
               while($row = mysql_fetch_array($query))
