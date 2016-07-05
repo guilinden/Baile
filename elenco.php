@@ -18,7 +18,7 @@ include_once 'database/database.php';
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Baile de Munique</a>
+            <a class="navbar-brand" href="index.php">Baile de Munique</a>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->

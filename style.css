@@ -94,14 +94,12 @@ width:110px;
 	-moz-box-shadow: 0 0 8px rgba(0, 0, 0, .8)
 	}
 #testando{
-    position: absolute;
-    top: 150px;
-    left: 250px;;
-    font-size: 50px;
+
+    font-size: 30px;
     color: #428bca;
 
 }
 h2{
-  font-size: 30px;
+  font-size: 20px;
   color: #428bca;
 }

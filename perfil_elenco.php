@@ -62,14 +62,16 @@ include_once 'database/database.php';
 			$id = $_GET['id'];
 			$sql = mysql_query("SELECT * FROM elenco WHERE id='$id'");
 			while($row = mysql_fetch_array($sql)){
-				Print '<img class="img-responsive" id="foto_perfil" src="imagens/' . $row['name'] . '" alt="">';
-				Print '<hr>';
+
 				Print '<div id="testando">';
 				Print $row['nome'];
+        Print '</br>';
+        
 				Print '</div>';
 
 
 			}
+
 			function info($valor){
 				$connection = mysql_connect(HOST,USER,PASS);
 				mysql_select_db("baile",$connection);
