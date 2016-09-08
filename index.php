@@ -77,10 +77,9 @@ include_once 'database/database.php'
         <tbody>
           <?php
               $cont = 0;
-              mysql_connect(HOST,USER,PASS) or die(mysql_error()); //Connect to server
-              mysql_select_db("baile") or die("Cannot connect to database"); //connect to database
-                  $query = mysql_query("SELECT * FROM jogos"); // SQL Query
-              while($row = mysql_fetch_array($query))
+              $con =  mysqli_connect(HOST,USER,PASS,'baile') or die ("ERROR"); //Connect to server
+              $query = mysqli_query($con,"SELECT * FROM jogos"); // SQL Query
+              while($row = mysqli_fetch_array($query,MYSQLI_ASSOC))
               {
                   $cont = $cont + 1;
                   Print "<tr>";
@@ -88,10 +87,7 @@ include_once 'database/database.php'
                       Print '<th>'. $row['adversario'] . "</th>";
                       Print '<td>'. $row['local'] . "</td>";
                       Print '<td>'. date('d/m/Y H:i:s', strtotime($row['horario'])) . "</td>";
-
-
-
-                  Print "</tr>";
+		   Print "</tr>";
               }
 
           ?>

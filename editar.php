@@ -72,9 +72,9 @@ else {
 		<?php
 				$cont = 0;
 				$id = $_GET['id'];
-				mysql_connect(HOST,USER,PASS) or die(mysql_error()); //Connect to server
-				mysql_select_db("baile") or die("Cannot connect to database"); //connect to database
-				$query = mysql_query("Select * from jogos Where id='$id'"); // SQL Query
+				$con = mysql_connect(HOST,USER,PASS,'baile');
+				
+				$query = mysql_query($con,"Select * from jogos Where id='$id'"); // SQL Query
 				while($row = mysql_fetch_array($query))
 				{
 					$cont = $cont + 1;

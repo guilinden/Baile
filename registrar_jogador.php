@@ -1,7 +1,6 @@
 <?php
 include_once 'database/database.php';
-$connection = mysql_connect(HOST,USER,PASS);
-mysql_select_db("baile",$connection);
+$connection = mysql_connect(HOST,USER,PASS,'baile');
 
 $nome = $_POST['nome'];
 $idade = $_POST['idade'];
@@ -16,7 +15,7 @@ $diretorio = "../Baile/imagens/";
 move_uploaded_file($_FILES['arquivo']['tmp_name'], $diretorio . $novo_nome);
 
 $sql = "INSERT INTO elenco (nome,idade,posicao,folego,velocidade,drible,forca,foto) VALUES ('$nome','$idade','$posicao','$folego','$velocidade','$drible','$forca','$novo_nome')";
-mysql_query($sql);
+mysql_query($connection,$sql);
 header("Location:home.php");
 
  ?>

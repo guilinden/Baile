@@ -69,13 +69,12 @@ else {
   </thead>
   <tbody>
 		<?php
-        $cont = 0;
-				mysql_connect(HOST,USER,PASS) or die(mysql_error()); //Connect to server
-				mysql_select_db("baile") or die("Cannot connect to database"); //connect to database
-					$query = mysql_query("SELECT * FROM jogos"); // SQL Query
-				while($row = mysql_fetch_array($query))
+			        $cont = 0;
+				$con = mysqli_connect(HOST,USER,PASS,'baile');
+				$query = mysqli_query($con,"SELECT * FROM jogos"); // SQL Query
+				while($row = mysqli_fetch_array($query))
 				{
-          $cont = $cont + 1;
+        			  $cont = $cont + 1;
 					Print "<tr>";
             Print '<th>' . $cont . "</th>";
 						Print '<td>'. $row['adversario'] . "</td>";

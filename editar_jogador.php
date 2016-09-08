@@ -1,7 +1,6 @@
 <?php
 include_once 'database/database.php';
-$connection = mysql_connect(HOST,USER,PASS);
-mysql_select_db("baile",$connection);
+$connection = mysqli_connect(HOST,USER,PASS,'baile');
 
 
 if(isset($_POST['editar'])){
@@ -15,7 +14,7 @@ if(isset($_POST['editar'])){
 	$id = $_GET['id'];
 
 	$sql = ("UPDATE elenco SET nome='$nome', posicao='$posicao', idade='$idade', folego='$folego', velocidade='$velocidade', forca='$forca', drible='$drible' WHERE id='$id'");
-	mysql_query($sql);
+	mysqli_query($connection,$sql);
 	//header("Location:elenco.php");
 
 }
@@ -92,10 +91,10 @@ if(isset($_POST['editar'])){
 	<tbody>
 <?php
 	$id = $_GET['id'];
-	mysql_connect(HOST,USER,PASS) or die(mysql_error()); //Connect to server
-	mysql_select_db("baile") or die("Cannot connect to database"); //connect to database
-	$query = mysql_query("Select * from elenco Where id='$id'"); // SQL Query
-	while($row = mysql_fetch_array($query)){
+	$con = mysqli_connect(HOST,USER,PASS,'baile');
+	
+	$query = mysqli_query($con,"Select * from elenco Where id='$id'");
+	while($row = mysqli_fetch_array($query)){
 		Print "<tr>";
 			Print '<td>'. $row['nome'] ."</td>";
 			Print '<td>'. $row['posicao'] . "</td>";
@@ -115,10 +114,10 @@ if(isset($_POST['editar'])){
 	<h2 class="form-signin-heading">Altere os dados</h2>
 	<?php
 	$id = $_GET['id'];
-	mysql_connect(HOST,USER,PASS) or die(mysql_error()); //Connect to server
-	mysql_select_db("baile") or die("Cannot connect to database"); //connect to database
-	$query = mysql_query("Select * from elenco Where id='$id'"); // SQL Query
-	while($row = mysql_fetch_array($query)){
+	$con = mysqli_connect(HOST,USER,PASS,'baile');
+	
+	$query = mysqli_query($con,"Select * from elenco Where id='$id'"); // SQL Query
+	while($row = mysqli_fetch_array($query)){
 		$nome = $row['nome'];
 		$posicao = $row['posicao'];
 		$idade = $row['idade'];
@@ -131,10 +130,10 @@ if(isset($_POST['editar'])){
 	<?php
 	function dropdown($titulo){
 		$id = $_GET['id'];
-		mysql_connect(HOST,USER,PASS) or die(mysql_error()); //Connect to server
-		mysql_select_db("baile") or die("Cannot connect to database"); //connect to database
-		$query = mysql_query("Select * from elenco Where id='$id'"); // SQL Query
-		while($row = mysql_fetch_array($query)){
+		$con = mysqli_connect(HOST,USER,PASS,'baile');
+		
+		$query = mysqli_query($con,"Select * from elenco Where id='$id'"); // SQL Query
+		while($row = mysqli_fetch_array($query)){
 			$titulo = strtolower($titulo);
 			$valor = $row[$titulo];
 		}

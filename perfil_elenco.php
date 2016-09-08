@@ -57,11 +57,11 @@ include_once 'database/database.php';
   <ul class="list-group">
 			<?php
 
-			$connection = mysql_connect(HOST,USER,PASS);
-			mysql_select_db("baile",$connection);
+			$connection = mysqli_connect(HOST,USER,PASS,'baile');
+			
 			$id = $_GET['id'];
-			$sql = mysql_query("SELECT * FROM elenco WHERE id='$id'");
-			while($row = mysql_fetch_array($sql)){
+			$sql = mysqli_query($connection,"SELECT * FROM elenco WHERE id='$id'");
+			while($row = mysqli_fetch_array($sql)){
 
 				Print '<div id="testando">';
 				Print $row['nome'];
@@ -73,11 +73,11 @@ include_once 'database/database.php';
 			}
 
 			function info($valor){
-				$connection = mysql_connect(HOST,USER,PASS);
-				mysql_select_db("baile",$connection);
+				$connection = mysqli_connect(HOST,USER,PASS,'baile');
+				
 				$id = $_GET['id'];
-				$sql = mysql_query("SELECT * FROM elenco WHERE id='$id'");
-				while($row = mysql_fetch_array($sql)){
+				$sql = mysqli_query($connection,"SELECT * FROM elenco WHERE id='$id'");
+				while($row = mysqli_fetch_array($sql)){
 					Print '<li class="list-group-item">';
 					$first = strtoupper(substr($valor, 0, 1));
 					$num = 0 - (strlen($valor) - 1);
@@ -90,11 +90,10 @@ include_once 'database/database.php';
 			}
 
 			function habilidades($valor){
-			$connection = mysql_connect(HOST,USER,PASS);
-			mysql_select_db("baile",$connection);
+			$connection = mysqli_connect(HOST,USER,PASS,'baile');
 			$id = $_GET['id'];
-			$sql = mysql_query("SELECT * FROM elenco WHERE id='$id'");
-			while($row = mysql_fetch_array($sql)){
+			$sql = mysqli_query($connection,"SELECT * FROM elenco WHERE id='$id'");
+			while($row = mysqli_fetch_array($sql)){
 				$first = strtoupper(substr($valor, 0, 1));
 				$num = 0 - (strlen($valor) - 1);
 				$second = strtolower(substr($valor,$num));

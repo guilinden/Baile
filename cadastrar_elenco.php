@@ -99,11 +99,10 @@ $extensao = strtolower(substr($_FILES['arquivo']['name'], -4));
 	$novo_nome = md5(time()) . $extensao;
 	$diretorio = "imagens/";
 	move_uploaded_file($_FILES['arquivo']['tmp_name'], $diretorio . $novo_nome);
-$connection = mysql_connect(HOST,USER,PASS);
-mysql_select_db("baile",$connection);
+$connection = mysqli_connect(HOST,USER,PASS,'baile');
 
 $sql = "INSERT INTO elenco (nome,idade,posicao,folego,velocidade,drible,forca,name) VALUES ('$nome','$idade','$posicao','$folego','$velocidade','$drible','$forca','$novo_nome')";
-mysql_query($sql);
+mysqli_query($connection,$sql);
 //header("Location:home.php");
 }
  ?>
