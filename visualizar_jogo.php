@@ -37,10 +37,10 @@ else {
 		<?php
 				$cont = 0;
 				$id = $_GET['id'];
-				$con = mysql_connect(HOST,USER,PASS,'baile');
+				$con = mysqli_connect(HOST,USER,PASS,'baile');
 				
-				$query = mysql_query($con,"Select * from marcar_jogo Where id='$id'"); // SQL Query
-				while($row = mysql_fetch_array($query))
+				$query = mysqli_query($con,"Select * from marcar_jogo Where id='$id'"); // SQL Query
+				while($row = mysqli_fetch_array($query))
 				{
 					$cont = $cont + 1;
 					Print "<tr>";
@@ -66,7 +66,7 @@ else {
 </html>
 
 <?php
-$connection = mysql_connect(HOST,USER,PASS,'baile');
+$connection = mysqli_connect(HOST,USER,PASS,'baile');
 
 
 if(isset($_REQUEST['marcar'])){
@@ -74,8 +74,8 @@ if(isset($_REQUEST['marcar'])){
   $sql="INSERT INTO jogos (adversario,local,horario) SELECT adversario,local,horario FROM marcar_jogo WHERE id='$id'";
   $sql2 = "DELETE FROM marcar_jogo WHERE id='$id'";
 	header("Location:home.php");
-  mysql_query($con,$sql);
-  mysql_query($con,$sql2);
+  mysqli_query($con,$sql);
+  mysqli_query($con,$sql2);
 }
 
  ?>

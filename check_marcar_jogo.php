@@ -1,7 +1,7 @@
 <?php
 		include_once 'database/database.php';
 
-		$connection = mysqli_connect(HOST,USER,PASS,'baile');
+		$connection = mysqli_connect(HOST,USER,PASS,'baile') or die("ERRO AO CONECTAR NO BANCO");
 		$adversario = $_POST['adversario'];
 		$local = $_POST['local'];
 		$horario = $_POST['horario'];

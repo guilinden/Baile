@@ -72,10 +72,10 @@ else {
 		<?php
 				$cont = 0;
 				$id = $_GET['id'];
-				$con = mysql_connect(HOST,USER,PASS,'baile');
+				$con = mysqli_connect(HOST,USER,PASS,'baile');
 				
-				$query = mysql_query($con,"Select * from jogos Where id='$id'"); // SQL Query
-				while($row = mysql_fetch_array($query))
+				$query = mysqli_query($con,"Select * from jogos Where id='$id'"); // SQL Query
+				while($row = mysqli_fetch_array($query))
 				{
 					$cont = $cont + 1;
 					Print "<tr>";
@@ -108,8 +108,7 @@ else {
 </html>
 
 <?php
-$connection = mysql_connect(HOST,USER,PASS);
-mysql_select_db("baile",$connection);
+$connection = mysqli_connect(HOST,USER,PASS,'baile');
 
 
 if(isset($_POST['editar'])){
@@ -118,7 +117,7 @@ if(isset($_POST['editar'])){
 	$horario = $_POST['horario'];
 
 	$sql = ("UPDATE jogos SET adversario='$adversario', local='$local', horario='$horario' WHERE id='$id'");
-	mysql_query($sql);
+	mysqli_query($connection,$sql);
 	header("Location:home.php");
 
 }

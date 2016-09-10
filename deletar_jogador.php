@@ -11,9 +11,9 @@ else {
 
 if($_SERVER['REQUEST_METHOD'] == "GET")
 	{
-		$con = mysql_connect(HOST,USER,PASS,'baile');
+		$con = mysqli_connect(HOST,USER,PASS,'baile');
 		$id = $_GET['id'];
-		mysql_query($con,"DELETE FROM elenco WHERE id='$id'");
+		mysqli_query($con,"DELETE FROM elenco WHERE id='$id'");
 		header("location: editar_elenco.php");
 	}
 ?>
